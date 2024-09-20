@@ -2,13 +2,18 @@
 import { useEffect, useState } from "react";
 
 let A = 1;
-let B = 1;
-export const Donut = () => {
+const B = 1.2;
+export const Donut = ({
+  horizontalSpin,
+  color,
+}: {
+  horizontalSpin: number;
+  color: string;
+}) => {
   const [donut, setDonut] = useState("");
   useEffect(() => {
     function renderTorusFrame() {
-      A += 0.07;
-      B += 0.03;
+      A -= 0.1 * horizontalSpin;
       const b = [];
       const z = [];
 
@@ -60,7 +65,12 @@ export const Donut = () => {
     return () => clearInterval(interval);
   });
   return (
-    <div className="font-mono text-center whitespace-break-spaces select-none">
+    <div
+      style={{
+        color,
+      }}
+      className="font-mono text-center whitespace-break-spaces select-none"
+    >
       {donut}
     </div>
   );

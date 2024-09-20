@@ -7,12 +7,20 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json<ApiData>({
     definitions: {
-      newFeature: {
-        description: "Controls whether the new feature is visible",
-        origin: "https://example.com/#new-feature",
+      color: {
+        description: "Controls the donut's color",
         options: [
-          { value: false, label: "Off" },
-          { value: true, label: "On" },
+          { value: "red", label: "Red" },
+          { value: "green", label: "Green" },
+          { value: "blue", label: "Blue" },
+        ],
+      },
+      horizontalSpin: {
+        description: "Controls the donut's horizontal spin",
+        options: [
+          { value: 1, label: "Left" },
+          { value: -1, label: "Right" },
+          { value: 0, label: "None" },
         ],
       },
     },

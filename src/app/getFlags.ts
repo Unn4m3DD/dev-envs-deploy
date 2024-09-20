@@ -8,7 +8,9 @@ export async function getFlags() {
     : {};
 
   const flags = {
-    newFeature: overrides?.newFeature ?? false,
+    color: overrides?.color as string ?? "#FFFFFF",
+    horizontalSpin: overrides?.horizontalSpin as number ?? 0,
+    showDonut: overrides?.showDonut as boolean ?? false,
   };
 
   return flags;

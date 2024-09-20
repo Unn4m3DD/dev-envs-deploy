@@ -1,34 +1,23 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import { VercelToolbar } from "@vercel/toolbar/next";
+import { FlagValues } from "@vercel/flags/react";
+import { Donut } from "./Donut";
+import { getFlags } from "./getFlags";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
-export const metadata: Metadata = {
-  title: "My Deploy",
-  description: "Deploys made easy",
-};
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout() {
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+  const flags = await getFlags();
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+        <div className="h-screen w-full flex flex-col items-center justify-center">
+          <div className="text-xl font-semibold">
+            A dev environment for another branch appeared!
+          </div>
+          {flags.showDonut && <Donut {...flags} />}
+        </div>
+        {shouldInjectToolbar && <VercelToolbar />}
+        <FlagValues values={flags} />
       </body>
     </html>
   );
