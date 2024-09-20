@@ -1,3 +1,4 @@
+"use client";
 import { useDonut } from "./hooks/useDonut";
 
 export default function Home() {

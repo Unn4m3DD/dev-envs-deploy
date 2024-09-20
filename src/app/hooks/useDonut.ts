@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 
+let A = 1;
+let B = 1;
 export const useDonut = () => {
   const [donut, setDonut] = useState("");
   useEffect(() => {
     function renderTorusFrame() {
-      const typedThis = this as unknown as any;
-      typedThis.A ??= 1;
-      typedThis.B ??= 1;
-      typedThis.A += 0.07;
-      typedThis.B += 0.03;
-      const A = typedThis.A;
-      const B = typedThis.B;
+      A += 0.07;
+      B += 0.03;
       const b = [];
       const z = [];
 
