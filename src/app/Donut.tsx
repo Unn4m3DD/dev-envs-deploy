@@ -1,8 +1,9 @@
+"use client";
 import { useEffect, useState } from "react";
 
 let A = 1;
 let B = 1;
-export const useDonut = () => {
+export const Donut = () => {
   const [donut, setDonut] = useState("");
   useEffect(() => {
     function renderTorusFrame() {
@@ -58,5 +59,9 @@ export const useDonut = () => {
     const interval = setInterval(renderTorusFrame, 50);
     return () => clearInterval(interval);
   });
-  return donut;
+  return (
+    <div className="font-mono text-center whitespace-break-spaces select-none">
+      {donut}
+    </div>
+  );
 };
